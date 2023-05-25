@@ -20,12 +20,18 @@
         </li>
       </ul>
       <ul class="navbar-nav ms-md-auto">
-        <li class="nav-link">
-          <a href="#" class="nav-link">Sign In</a>
-        </li>
-        <li class="nav-link">
-          <a class="nav-link" href="#">Sign Out</a>
-        </li>
+        {% if request.user.is_authenticated %}
+          <li class="nav-link">
+            <a class="nav-link" href="{% url 'logout' %}">Sign Out</a>
+          </li>
+        {% else %}
+          <li class="nav-link">
+            <a href="{% url 'login' %}" class="nav-link">Sign In</a>
+          </li>
+          <li class="nav-link">
+            <a href="{% url 'register' %}" class="nav-link">Sign Up</a>
+          </li>
+        {% endif %}
       </ul>
     </div>
   </div>

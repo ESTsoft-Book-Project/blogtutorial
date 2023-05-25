@@ -1,3 +1,29 @@
-{% extends 'blog/base.html' %} {% block content %}
-<h1>Index</h1>
+{% extends 'blog/base.html' %} 
+
+{% block content %}
+    <div class="container">
+        <div class="row">
+            <div class="mx-md-auto mt-5 mb-5">
+                <h1 class="fw-bolder">Django Blog</h1>
+                <h5 class="text-muted">A blog about Django and Python! </h5>
+            </div>
+        </div>
+        
+        {% comment %} loop through all posts {% endcomment %}
+        
+        {%for object in object_list%}
+        <div class="row">
+            <div class="mx-md-auto mt-5 mb-5">
+                <h3 class="fw-bold">{{object.title}}</h3>
+                <p class="text-muted">{{object.date}}</p>
+                <p class="text-muted">Posted by {{object.author.username}}</p>
+                {%if object.likes.count == 1%}
+                    <div class="text-muted">{{object.likes.count}} person likes this post</div>
+                {%else%}
+                    <div class="text-muted">{{object.likes.count}} people likes this post</div>
+                {%endif%}
+            </div>
+        </div>
+        {%endfor%}
+    </div>
 {% endblock content%}

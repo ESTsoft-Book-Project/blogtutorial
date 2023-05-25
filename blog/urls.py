@@ -14,11 +14,12 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
-from django.urls import path
+from django.urls import path, include
 from blog.views import Index
 
 urlpatterns = [
     # root path => blog/templates/blog/index.html
     # {% url 'index' %} will lead user index.html
-    path('', Index.as_view(), name='index'),
+    path("", Index.as_view(), name="index"),
+    path("tinymce/", include("tinymce.urls")),
 ]
