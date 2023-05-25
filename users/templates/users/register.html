@@ -1,0 +1,17 @@
+{%extends 'blog/base.html'%} 
+{%load crispy_forms_tags%}
+
+{% block content %}
+  <div class="row">
+    <div class="col-11 col-md-4 mx-auto mt-5">
+      <form method="POST">
+        {% comment %} add guard from cross-site request forgery attack {% endcomment %}
+        {% csrf_token %}
+        {% comment %} two curly braces means variable {% endcomment %} 
+        {% comment %} django-crispy applies formatting form {% endcomment %}
+        {{form|crispy}}
+        <button class="btn btn-secondary" type="submit">Sign Up</button>
+      </form>
+    </div>
+  </div>
+{% endblock content %}
