@@ -15,7 +15,7 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.urls import path, include
-from blog.views import Index, DetailArticleView
+from blog.views import Index, DetailArticleView, LikeArticle
 
 urlpatterns = [
     # root path => blog/templates/blog/index.html
@@ -23,4 +23,5 @@ urlpatterns = [
     path("", Index.as_view(), name="index"),
     path("tinymce/", include("tinymce.urls")),
     path("<int:pk>/", DetailArticleView.as_view(), name="detail_article"),
+    path("<int:pk>/like", LikeArticle.as_view(), name="like_article"),
 ]

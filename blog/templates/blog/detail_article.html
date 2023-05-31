@@ -32,6 +32,20 @@
             </div>
         </div>
 
+        
+        {% if request.user.is_authenticated %}
+            {% if liked_by_user %}
+            {% else %}
+            {% endif %}
+        {% else %}
+            {% comment %} login first {% endcomment %}
+            <button class="btn btn-outline-primary" disabled> 
+                <img src="heart-outline.svg" alt="heart-outline">
+                Login to like this post
+            </button>
+        {% endif %}
+            
+
     </div>
 {% endblock content %}
     
