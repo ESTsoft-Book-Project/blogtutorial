@@ -111,6 +111,11 @@ unsafe-load-any-extension=no
 #verbose=
 
 
+# for pylint_django
+load-plugins=pylint_django
+django-settings-module = blogtutorial.settings
+
+
 [BASIC]
 
 # Naming style matching correct argument names.
