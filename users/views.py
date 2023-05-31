@@ -10,13 +10,16 @@ class RegisterView(View):
 
     def get(self, request):
         form = UserRegisterForm()
-        return render(request, 'users/register.html',
-                      # take `UserRegisterForm ` for render pre-built reg page
-                      {'form': form})
+        return render(
+            request,
+            "users/register.html",
+            # take `UserRegisterForm ` for render pre-built reg page
+            context={"form": form},
+        )
 
     def post(self, request):
         form = UserRegisterForm(request.POST)
 
         if form.is_valid():
             form.save()
-            return redirect('index')
+            return redirect("index")

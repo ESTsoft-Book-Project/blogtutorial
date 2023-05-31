@@ -15,11 +15,12 @@ Including another URLconf
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
 from django.urls import path, include
-from blog.views import Index
+from blog.views import Index, DetailArticleView
 
 urlpatterns = [
     # root path => blog/templates/blog/index.html
     # {% url 'index' %} will lead user index.html
     path("", Index.as_view(), name="index"),
     path("tinymce/", include("tinymce.urls")),
+    path("<int:pk>/", DetailArticleView.as_view(), name="detail_article"),
 ]
