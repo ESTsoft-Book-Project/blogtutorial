@@ -8,8 +8,10 @@
       <form method="POST">
         {% comment %} add guard from cross-site request forgery attack {% endcomment %}
         {% csrf_token %}
+
         {% comment %} two curly braces means variable {% endcomment %} 
         {% comment %} django-crispy applies formatting form {% endcomment %}
+        {% comment %} input field를 {{form}}이 대신 만들어주고 있다. 내가 [[forms.py]]에서 정의한 네가지 요소인 ['username', 'email', 'password1', 'password2']를 그 순서까지 맞춰서 저시기 하고 있는 것을 볼 수 있다. {% endcomment %}
         {{form|crispy}}
         <button class="btn btn-secondary" type="submit">Sign Up</button>
       </form>
