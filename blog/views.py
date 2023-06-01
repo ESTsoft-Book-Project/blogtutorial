@@ -1,8 +1,9 @@
-from typing import Any, Dict
+from typing import Any, Dict, Optional
 from django.views import View
 from django.views.generic import ListView, DetailView, DeleteView
 from django.shortcuts import redirect
 from django.urls import reverse_lazy
+from django.contrib.auth.mixins import LoginRequiredMixin, UserPassesTestMixin
 from .models import Article
 
 # Create your views here.
@@ -52,10 +53,17 @@ class LikeArticle(View):
         return redirect("detail_article", pk)
 
 
-class DeleteArticle(DeleteView):
+class DeleteArticle(LoginRequiredMixin, UserPassesTestMixin, DeleteView):
     """POST request to delete operation"""
 
     model = Article
     template_name = "blog/delete_article.html"
     # 일이 모두 마친 뒤에 `index`페이지로 redirect한다.
     success_url = reverse_lazy("index")
+
+    def test_func(self) -> bool | None:
+        """overridden from `UserPassesTextMixin`
+        if return False => 403 Forbidden
+        """
+        article = Article.objects.get(id=self.kwargs.get("pk"))
+        return self.request.user.id == article.author.id

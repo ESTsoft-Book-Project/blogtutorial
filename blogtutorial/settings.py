@@ -20,9 +20,7 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/4.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = (
-    "django-insecure-epp_*7bcctd==2mzh%avw4&icdm44&$%wm-g0=0d5bkuam)tiv"
-)
+SECRET_KEY = "django-insecure-epp_*7bcctd==2mzh%avw4&icdm44&$%wm-g0=0d5bkuam)tiv"
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -133,4 +131,5 @@ CRISPY_ALLOWED_TEMPLATE_PACKS = "bootstrap5"
 
 CRISPY_TEMPLATE_PACK = "bootstrap5"
 
+# `next` GET을 얻지 못할 경우 에러를 띄우는 대신 로그인 페이지로 리디렉션.
 LOGIN_REDIRECT_URL = "index"
