@@ -1,0 +1,21 @@
+{% extends 'blog/base.html' %}
+
+
+{% block content %}
+    <div class="container p-3 mt-3 bg-light border rounded">
+        <a class="btn btn-outline-dark" href="{%url 'detail_article' object.pk%}">Cancel</a>
+
+        <div class="row">
+            <div class="mx-md-auto mx-3 col-11 mt-3">
+                <h1>Delete Article  <ion-icon style="color: red" name="warning-outline"></ion-icon>️</h1>
+                <h3>Are you sure you want to delete this article?</h3>
+            </div>
+            <form method="POST">
+                {% csrf_token %}
+                <button class="btn btn-danger mt-3" type="submit">Confirm</button>
+            </form>
+        </div>
+
+    </div>
+{% endblock content %}
+    

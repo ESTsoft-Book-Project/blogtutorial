@@ -1,7 +1,8 @@
 from typing import Any, Dict
 from django.views import View
-from django.views.generic import ListView, DetailView
+from django.views.generic import ListView, DetailView, DeleteView
 from django.shortcuts import redirect
+from django.urls import reverse_lazy
 from .models import Article
 
 # Create your views here.
@@ -49,3 +50,12 @@ class LikeArticle(View):
         # save the article and redirect to itself
         article.save()
         return redirect("detail_article", pk)
+
+
+class DeleteArticle(DeleteView):
+    """POST request to delete operation"""
+
+    model = Article
+    template_name = "blog/delete_article.html"
+    # 일이 모두 마친 뒤에 `index`페이지로 redirect한다.
+    success_url = reverse_lazy("index")
