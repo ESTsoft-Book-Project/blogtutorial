@@ -1,4 +1,4 @@
-from typing import Any, Dict, Optional
+from typing import Any, Dict
 from django.views import View
 from django.views.generic import ListView, DetailView, DeleteView
 from django.shortcuts import redirect
@@ -12,6 +12,13 @@ from .models import Article
 class Index(ListView):
     model = Article
     queryset = Article.objects.all().order_by("-date")
+    template_name = "blog/index.html"
+    paginate_by = 1
+
+
+class Featured(ListView):
+    model = Article
+    queryset = Article.objects.filter(featured=True).order_by("-date")
     template_name = "blog/index.html"
     paginate_by = 1
 
