@@ -1,5 +1,5 @@
 from django.db import models
-from django.contrib.auth.models import User
+import users.models
 import tinymce.models
 
 
@@ -14,10 +14,10 @@ class Article(models.Model):
 
     # models.CASCADE will delete all user's articles on delete account
     # DO_NOTHING, SET_NULL 등의 옵션이 있으니 참고바람.
-    author = models.ForeignKey(User, on_delete=models.CASCADE)
+    author = models.ForeignKey(users.models.User, on_delete=models.CASCADE, related_name="author")
 
     # as default, all articles are being not be featured
     featured = models.BooleanField(default=False)
 
     # user can hit like button
-    likes = models.ManyToManyField(User, related_name="likes", blank=True)
+    likes = models.ManyToManyField(users.models.User, related_name="likes", blank=True)

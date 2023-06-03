@@ -133,3 +133,6 @@ CRISPY_TEMPLATE_PACK = "bootstrap5"
 
 # `next` GET을 얻지 못할 경우 에러를 띄우는 대신 로그인 페이지로 리디렉션.
 LOGIN_REDIRECT_URL = "index"
+
+# makemigrations 명령을 수행하기 전에 반드시 아래 변수를 설정하여야 한다.
+AUTH_USER_MODEL = "users.User"
